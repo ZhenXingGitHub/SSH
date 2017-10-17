@@ -1,0 +1,2 @@
+初步学习strus2 和 hibernate 
+	基于 

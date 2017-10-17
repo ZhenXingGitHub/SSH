@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.resume.model">
+
+	<class name="Admin" table="admin" dynamic-update="true">
+		<id name="a_id" column="a_id">
+			<generator class="native"></generator>
+		</id>
+		<property name="a_username" column="a_username"></property>
+		
+		<property name="a_password" column="a_password"></property>
+		
+	    <property name="a_proview" column="a_proview"></property>
+	    
+	    <property name="a_tel" column="a_tel"></property>
+
+		<property name="a_email" column="a_email"></property>			
+		
+		<property name="a_name" column="a_name"></property>		
+		
+		<property name="a_url" column="a_url"></property>		
+	</class>
+
+</hibernate-mapping>

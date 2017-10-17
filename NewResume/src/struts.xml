@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<package name="p1" extends="struts-default">
+		<global-results>
+			<result name="error">error.jsp</result>
+		</global-results>
+		<action name="Admin*" class="com.resume.action.AdminAction" method="{1}">
+			<result name="success">index.jsp</result>
+			<result name="manage">manage.jsp</result>
+			<result name="save">manage-update.jsp</result>
+			<result name="gets">manage-update.jsp</result>
+			<result name="edit">manage-update.jsp</result>
+			<result name="update">manage-update.jsp</result>
+			<result name="delect">manage.jsp</result>
+			<result name="error">error.jsp</result>
+		</action>
+	
+	</package>
+   
+
+</struts>
