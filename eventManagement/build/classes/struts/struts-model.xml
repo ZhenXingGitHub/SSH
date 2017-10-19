@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+ 	<package name="interceptor" extends="struts-default">
+		<interceptors>
+			<interceptor name="loginCheckInterceptor" class="com.event.interceptor.LoginInterceptor"></interceptor>
+			<interceptor-stack name="mydefault">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="loginCheckInterceptor">
+					<param name="excludeMethods">login</param>
+				</interceptor-ref>
+			</interceptor-stack>
+			
+		</interceptors>
+		
+		<default-interceptor-ref name="mydefault"/>
+	</package>
+	
+	<package name="All" extends="interceptor">
+		<global-results>
+			<result name="error">login.jsp</result>
+		</global-results>
+		<action name="tUserAction_*" class="tUserAction" method="{1}">
+			<result name="login" type="chain">tUserAction_getAllServicer</result>	
+			<result name="kehu" type="chain">tEventAction_Event</result>	
+			<result name="login_error">login.jsp</result>		
+			<result name="zzlist">member.jsp</result>	
+			<result name="yhlist">member.jsp</result>		
+			<result name="kflist">member.jsp</result>			
+			<result name="findById">member.jsp</result>
+			<result name="updateEnty">member.jsp</result>
+			<result name="deleteEnty" type="chain">tUserAction_getAllServicer</result>	
+			
+		</action>
+		
+		<action name="tEventAction_*" class="tEventAction" method="{1}">
+			<result name="eventList">event_management.jsp</result>	
+			<result name="updateEvent" type="chain">tEventAction_Event</result>	
+			<result name="adminEvent">admin_event.jsp</result>	
+			<result name="kheventList">user_event.jsp</result>
+		</action>
+		
+		<action name="tPlacardAction_*" class="tPlacardAction" method="{1}">
+			<result name="placard">placard.jsp</result>	
+			<result name="addPlacard" type="chain">tPlacardAction_AllPlacard</result>	
+		</action>
+		
+		<action name="tRecordAction_*" class="tRecordAction" method="{1}">
+			<result name="chat">chat.jsp</result>	
+		</action>
+		
+		<action name="tCountAction_*" class="tCountAction" method="{1}">
+			<result name="ok">count.jsp</result>	
+		</action>
+	</package>
+	
+</struts>

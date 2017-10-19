@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/aop 
+           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/tx 
+           http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+		
+	<bean id="commonDao" class="com.event.dao.base.impl.CommonDaoImpl" abstract="true">
+	  	<property name="hibernateTemplate">
+			<ref bean="hibernateTemplate"/>
+		</property>
+	</bean>
+	
+	<!--TUser  -->
+	
+	<bean id="TUserDao" class="com.event.dao.impl.TUserDaoImpl" parent="commonDao"></bean>
+	
+	<bean id="tUserService" class="com.event.service.impl.TUserServiceImpl">
+		<property name="commonDao" ref="TUserDao"></property>
+	</bean>
+	
+	<bean id="tUserAction" class="com.event.action.TUserAction">
+		<property name="tUserService" ref="tUserService"></property>
+	</bean>
+	
+	<!-- TEvent -->
+	
+	<bean id="TEventDao" class="com.event.dao.impl.TEventDaoImpl" parent="commonDao"></bean>
+	
+	<bean id="tEventService" class="com.event.service.impl.TEventServiceImpl">
+		<property name="commonDao" ref="TEventDao"></property>
+	</bean>
+	
+	<bean id="tEventAction" class="com.event.action.TEventAction" scope="prototype">
+		<property name="tEventService" ref="tEventService"></property>
+		<property name="tuserService" ref="tUserService"></property>		
+	</bean>
+	
+	<!-- TPlacard -->
+	
+	<bean id="TPlacardDao" class="com.event.dao.impl.TPlacardDaoImpl" parent="commonDao"></bean>
+	
+	<bean id="tPlacardService" class="com.event.service.impl.TPlacardServiceImpl">
+		<property name="commonDao" ref="TPlacardDao"></property>
+	</bean>
+	
+	<bean id="tPlacardAction" class="com.event.action.TPlacardAction" scope="prototype">
+		<property name="tPlacardService" ref="tPlacardService"></property>
+	</bean>
+	
+	<!-- TRecord -->
+	
+	<bean id="TRecordDao" class="com.event.dao.impl.TRecordDaoImpl" parent="commonDao"></bean>
+	
+	<bean id="tRecordService" class="com.event.service.impl.TRecordServiceImpl">
+		<property name="commonDao" ref="TRecordDao"></property>
+	</bean>
+	
+	<bean id="tRecordAction" class="com.event.action.TRecordAction" scope="prototype">
+		<property name="tEventService" ref="tEventService"></property>
+		<property name="tRecordService" ref="tRecordService"></property>
+	</bean>
+	
+	<!-- TCount -->
+	<bean id="tCountAction" class="com.event.action.TCountAction" scope="prototype">
+		<property name="tEventService" ref="tEventService"></property>
+		<property name="tUserService" ref="tUserService"></property>	
+		<property name="tPlacardService" ref="tPlacardService"></property>	
+	</bean>
+		
+		
+</beans>
