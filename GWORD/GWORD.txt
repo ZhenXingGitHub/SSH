@@ -1,0 +1,12 @@
+SSH框架练习 Spring4学习  根据Java1234_小峰老师视频学习
+基本实现前段后台页面 
+页面不怎么华丽 页面时大二PS设计所做 纯手作
+java后台实现繁琐
+初步了解ssh 
+了解 注入 @Repository、@Service、@Controller 和 @Component 将类标识为Bean
+@Component 是一个泛化的概念，仅仅表示一个组件 (Bean) ，可以作用在任何层次。
+@Service 通常作用在业务层，但是目前该功能与 @Component 相同。
+@Constroller 通常作用在控制层，但是目前该功能与 @Component 相同。
+@Repository 注解，需要在 XML 配置文件中启用Bean 的自动扫描功能，这可以通过<context:component-scan/>实现
+
+@Resource 注入并加载bean。。。。。
